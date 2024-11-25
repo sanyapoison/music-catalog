@@ -1,0 +1,706 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Music Catalog API",
+        "description": "API для управления исполнителями, альбомами и песнями.",
+        "contact": {
+            "email": "support@example.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "Localhost API server"
+        },
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "Localhost API server"
+        },
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "Localhost API server"
+        },
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "Localhost API server"
+        }
+    ],
+    "paths": {
+        "/api/albums": {
+            "get": {
+                "tags": [
+                    "Albums"
+                ],
+                "summary": "Получить список всех альбомов",
+                "operationId": "735609843dcfb89ee4e12e340eddca25",
+                "responses": {
+                    "200": {
+                        "description": "Успешное выполнение"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Albums"
+                ],
+                "summary": "Создать новый альбом",
+                "operationId": "2252aa8fd63b7d2fa1203c1735943d46",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "artist_id",
+                                    "release_year"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "A Head Full of Dreams"
+                                    },
+                                    "artist_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "release_year": {
+                                        "type": "integer",
+                                        "example": 2015
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Альбом создан"
+                    }
+                }
+            }
+        },
+        "/api/albums/{id}": {
+            "get": {
+                "tags": [
+                    "Albums"
+                ],
+                "summary": "Получить информацию об альбоме",
+                "operationId": "71e9c4179582355e89419e6f6994c418",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID альбома",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Информация об альбоме"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Albums"
+                ],
+                "summary": "Обновить информацию об альбоме",
+                "operationId": "1300ec85cc590b1ae1468c9bf8db122d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID альбома",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "artist_id",
+                                    "release_year"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Mylo Xyloto"
+                                    },
+                                    "artist_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "release_year": {
+                                        "type": "integer",
+                                        "example": 2011
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Альбом обновлен"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Albums"
+                ],
+                "summary": "Удалить альбом",
+                "operationId": "cabfc7c152115607d310827d46a82d5a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID альбома",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Альбом удален"
+                    }
+                }
+            }
+        },
+        "/api/albums/{album}/songs": {
+            "get": {
+                "tags": [
+                    "Album Songs"
+                ],
+                "summary": "Получить список песен в альбоме",
+                "operationId": "4bfc954afef493a8e4225295cca0d03a",
+                "parameters": [
+                    {
+                        "name": "album",
+                        "in": "path",
+                        "description": "ID альбома",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Список песен в альбоме",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Song Title"
+                                            },
+                                            "track_number": {
+                                                "type": "integer",
+                                                "example": 1
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Альбом не найден"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Album Songs"
+                ],
+                "summary": "Добавить песню в альбом",
+                "operationId": "48ae422672a44fbc2da68e7c3b07f0ae",
+                "parameters": [
+                    {
+                        "name": "album",
+                        "in": "path",
+                        "description": "ID альбома",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "song_id",
+                                    "track_number"
+                                ],
+                                "properties": {
+                                    "song_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "track_number": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Песня добавлена в альбом"
+                    },
+                    "404": {
+                        "description": "Альбом или песня не найдены"
+                    }
+                }
+            }
+        },
+        "/api/albums/{album}/songs/{song}": {
+            "delete": {
+                "tags": [
+                    "Album Songs"
+                ],
+                "summary": "Удалить песню из альбома",
+                "operationId": "950426a912db2383f8d68ce10762162f",
+                "parameters": [
+                    {
+                        "name": "album",
+                        "in": "path",
+                        "description": "ID альбома",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "song",
+                        "in": "path",
+                        "description": "ID песни",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Песня удалена из альбома"
+                    },
+                    "404": {
+                        "description": "Альбом или песня не найдены"
+                    }
+                }
+            }
+        },
+        "/api/artists": {
+            "get": {
+                "tags": [
+                    "Artists"
+                ],
+                "summary": "Получить список всех исполнителей",
+                "operationId": "2c8aed1387cca1c65d98da7ee11ac926",
+                "responses": {
+                    "200": {
+                        "description": "Успешное выполнение"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Artists"
+                ],
+                "summary": "Создать нового исполнителя",
+                "operationId": "83d2888bdc6fac66b9a7cc81c4c950fb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Coldplay"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Исполнитель создан"
+                    }
+                }
+            }
+        },
+        "/api/artists/{id}": {
+            "get": {
+                "tags": [
+                    "Artists"
+                ],
+                "summary": "Получить информацию об исполнителе",
+                "operationId": "d0b68c06b8bc310fbe24c6d3ea80dac3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID исполнителя",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Информация об исполнителе"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Artists"
+                ],
+                "summary": "Обновить информацию об исполнителе",
+                "operationId": "5a5632ea389f9a05336f8d035f5a44c0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID исполнителя",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Imagine Dragons"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Исполнитель обновлен"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Artists"
+                ],
+                "summary": "Удалить исполнителя",
+                "operationId": "4f6d8bd2c8b4b738af7589b72348ac20",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID исполнителя",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Исполнитель удален"
+                    }
+                }
+            }
+        },
+        "/api/songs": {
+            "get": {
+                "tags": [
+                    "Songs"
+                ],
+                "summary": "Получить список всех песен",
+                "operationId": "0388bb28c35eec49b8b492d169ce3575",
+                "responses": {
+                    "200": {
+                        "description": "Успешное выполнение"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Songs"
+                ],
+                "summary": "Создать новую песню",
+                "operationId": "2f1970b82d91cc715578d972189f19cb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Yellow"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Песня создана"
+                    }
+                }
+            }
+        },
+        "/api/songs/{id}": {
+            "get": {
+                "tags": [
+                    "Songs"
+                ],
+                "summary": "Получить информацию о песне",
+                "operationId": "4325a96361d1d3820cc0580eaae9197c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID песни",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Информация о песне"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Songs"
+                ],
+                "summary": "Обновить информацию о песне",
+                "operationId": "452de7f8f11a121cd11e9430565632c3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID песни",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Fix You"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Песня обновлена"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Songs"
+                ],
+                "summary": "Удалить песню",
+                "operationId": "829c1a52ae5013ce3ff4b9829a31485f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID песни",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Песня удалена"
+                    }
+                }
+            }
+        },
+        "/api/songs/{id}/add-to-album": {
+            "post": {
+                "tags": [
+                    "Songs"
+                ],
+                "summary": "Добавить песню в альбом",
+                "operationId": "5645e43aef0d6a587bff7b411c6be977",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID песни",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "album_id",
+                                    "track_number"
+                                ],
+                                "properties": {
+                                    "album_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "track_number": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Песня добавлена в альбом"
+                    }
+                }
+            }
+        },
+        "/api/songs/{id}/remove-from-album": {
+            "post": {
+                "tags": [
+                    "Songs"
+                ],
+                "summary": "Удалить песню из альбома",
+                "operationId": "2c54254fc106819009622552add57964",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID песни",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "album_id"
+                                ],
+                                "properties": {
+                                    "album_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Песня удалена из альбома"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Albums",
+            "description": "API для работы с альбомами"
+        },
+        {
+            "name": "Album Songs",
+            "description": "API для работы с песнями в альбомах"
+        },
+        {
+            "name": "Artists",
+            "description": "API для работы с исполнителями"
+        },
+        {
+            "name": "Songs",
+            "description": "API для работы с песнями"
+        }
+    ]
+}

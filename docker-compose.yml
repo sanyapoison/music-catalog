@@ -1,0 +1,25 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: music_catalog_app:latest
+    container_name: music_catalog_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/var/www/html
+      - ./database:/var/www/html/database
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_URL=http://localhost:8000
+    command: php artisan serve --host=0.0.0.0 --port=8000
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: swagger_ui
+    ports:
+      - "8080:8080"
+    environment:
+      SWAGGER_JSON: http://localhost:8000/api/docs/api-docs.json
