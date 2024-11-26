@@ -18,17 +18,17 @@ git clone https://github.com/sanyapoison/music-catalog
 cd music-catalog
 ```
 
-Запустите контейнеры с помощью Docker Compose:
+### 2. Запустите контейнеры с помощью Docker Compose:
 ```bash
 docker-compose up -d
 ```
 
-Если вы хотите увидеть логи контейнеров, используйте:
+### 3. Создать миграции
 ```bash
-docker-compose logs -f
+docker-compose exec app php artisan migrate
 ```
 
-Доступ к приложениям:
+### 4. Доступ к приложениям:
 
 Laravel приложение (API): http://localhost:8000.
 
